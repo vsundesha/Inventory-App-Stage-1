@@ -17,7 +17,7 @@ import android.widget.Spinner;
 import com.example.anrdoid.inventoryappstage1.data.InventoryContract.InventoryEntry;
 import com.example.anrdoid.inventoryappstage1.data.InventoryDbHelper;
 
-public class AddActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
     private EditText mProductName;
     private EditText mProductPrice;
