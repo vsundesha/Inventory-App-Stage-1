@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Inventory_App_Stage_1</string>
+
+    <string name="add_product">New product</string>
+
+    <string name="product_name">Product name</string>
+    <string name="product_price">Price</string>
+    <string name="product_quantity">Qty</string>
+    <string name="product_supplier_name">Supplier name</string>
+    <string name="product_supplier_phone_number">Supplier number</string>
+
+    <string name="supplier_one">Macrohard</string>
+    <string name="supplier_two">Pear</string>
+    <string name="supplier_three">Fbay</string>
+
+    <string name="action_save">Save</string>
+</resources>
