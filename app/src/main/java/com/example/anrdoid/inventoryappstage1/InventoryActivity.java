@@ -39,7 +39,6 @@ public class InventoryActivity extends AppCompatActivity {
     }
 
     private void displayDatabaseInfo() {
-        SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
         String[] projection = {
                 InventoryEntry._ID,
@@ -49,16 +48,10 @@ public class InventoryActivity extends AppCompatActivity {
                 InventoryEntry.COLUMN_PRODUCT_SUPPLIER_NAME,
                 InventoryEntry.COLUMN_PRODUCT_SUPPLIER_PHONE_NUMBER
         };
-        Cursor cursor = db.query(
-                InventoryEntry.TABLE_NAME,
-                projection,
-                null,
-                null,
-                null,
-                null,
-                null);
 
-        TextView displayView = (TextView) findViewById(R.id.text_view_inventory);
+        Cursor cursor = getContentResolver().query( InventoryEntry.CONTENT_URI ,projection, null, null, null);
+
+        TextView displayView = findViewById(R.id.text_view_inventory);
 
         try {
             displayView.setText(

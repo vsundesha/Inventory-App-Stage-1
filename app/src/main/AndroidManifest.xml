@@ -25,6 +25,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".InventoryActivity" />
         </activity>
+        <provider
+            android:authorities="com.example.anrdoid.inventoryappstage1"
+            android:name=".data.InventoryProvider"
+            android:exported="false" />
     </application>
-
 </manifest>

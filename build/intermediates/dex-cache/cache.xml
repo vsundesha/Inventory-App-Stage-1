@@ -3,33 +3,73 @@
 
     <item
         is-multidex="false"
-        jar="/home/vsundesh/.gradle/caches/transforms-1/files-1.1/support-v4-27.0.0.aar/8ef0a82912c6a14f7856b68f655d472c/jars/classes.jar"
+        jar="/home/vsundesh/.gradle/caches/transforms-1/files-1.1/support-compat-27.0.0.aar/86869b10e97160de221781b867a9136f/jars/classes.jar"
         jumboMode="false"
         min-sdk-version="15"
         optimize="true"
         revision="26.0.2"
-        sha1="e7404d217654969776b5fa566df9a7f2c1b1c337">
-        <dex dex="/home/vsundesh/AndroidStudioProjects/Inventory-App-Stage-1/app/build/intermediates/transforms/preDex/release/4.jar" />
+        sha1="89172db744f643c670ee7f9620b39ed460bc23fb">
+        <dex dex="/home/vsundesh/AndroidStudioProjects/Inventory-App-Stage-1/app/build/intermediates/transforms/preDex/release/13.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/home/vsundesh/.gradle/caches/transforms-1/files-1.1/transition-27.0.0.aar/037d8379534dc60a25ecd443bbc8b7e5/jars/classes.jar"
+        jar="/home/vsundesh/.gradle/caches/transforms-1/files-1.1/support-fragment-27.0.0.aar/d55ccef1bf6ba16814e5a3069de852e6/jars/classes.jar"
         jumboMode="false"
         min-sdk-version="15"
         optimize="true"
         revision="26.0.2"
-        sha1="4acee87c1f3801ff4162b2f8d5b3cf999007ee6f">
-        <dex dex="/home/vsundesh/AndroidStudioProjects/Inventory-App-Stage-1/app/build/intermediates/transforms/preDex/release/10.jar" />
+        sha1="9e3177fae918dbe4e58eccf197cfb56bfaf59803">
+        <dex dex="/home/vsundesh/AndroidStudioProjects/Inventory-App-Stage-1/app/build/intermediates/transforms/preDex/release/5.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/home/vsundesh/.gradle/caches/transforms-1/files-1.1/support-media-compat-27.0.0.aar/4cf7013ae5be2a1fdbb3134134fc5b2a/jars/classes.jar"
+        jar="/home/vsundesh/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/ba4f87e8c4063523d5afd182c8325faf/jars/classes.jar"
         jumboMode="false"
         min-sdk-version="15"
         optimize="true"
         revision="26.0.2"
-        sha1="f73f6af8b32299bb364178188dcfe50379ed0da7">
-        <dex dex="/home/vsundesh/AndroidStudioProjects/Inventory-App-Stage-1/app/build/intermediates/transforms/preDex/release/12.jar" />
+        sha1="b62fdc4cfef174c1e456014195c83fa7de7dc041">
+        <dex dex="/home/vsundesh/AndroidStudioProjects/Inventory-App-Stage-1/app/build/intermediates/transforms/preDex/release/16.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/vsundesh/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-27.0.0.aar/28b0359568f042d85f13fa95f0a298a3/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="15"
+        optimize="true"
+        revision="26.0.2"
+        sha1="62c85d61c1ecd732dfe0c57e050d179ed85588bf">
+        <dex dex="/home/vsundesh/AndroidStudioProjects/Inventory-App-Stage-1/app/build/intermediates/transforms/preDex/release/9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/vsundesh/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-27.0.0.aar/42542b0f98187ba9c94ba5b471eea391/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="15"
+        optimize="true"
+        revision="26.0.2"
+        sha1="0e97fa8abc1a1a90087ce8b093d11f1a8e0f1214">
+        <dex dex="/home/vsundesh/AndroidStudioProjects/Inventory-App-Stage-1/app/build/intermediates/transforms/preDex/release/8.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/vsundesh/.gradle/caches/modules-2/files-2.1/android.arch.core/common/1.0.0/a2d487452376193fc8c103dd2b9bd5f2b1b44563/common-1.0.0.jar"
+        jumboMode="false"
+        min-sdk-version="15"
+        optimize="true"
+        revision="26.0.2"
+        sha1="a2d487452376193fc8c103dd2b9bd5f2b1b44563">
+        <dex dex="/home/vsundesh/AndroidStudioProjects/Inventory-App-Stage-1/app/build/intermediates/transforms/preDex/release/18.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/vsundesh/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.0.0.aar/f63d9d4e24df07d0ea2fb14efcdc80d1/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="15"
+        optimize="true"
+        revision="26.0.2"
+        sha1="7103318ab8a16fe56a325b7554b088f4d49e4700">
+        <dex dex="/home/vsundesh/AndroidStudioProjects/Inventory-App-Stage-1/app/build/intermediates/transforms/preDex/release/2.jar" />
     </item>
     <item
         is-multidex="false"
@@ -43,13 +83,103 @@
     </item>
     <item
         is-multidex="false"
-        jar="/home/vsundesh/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-27.0.0.aar/28b0359568f042d85f13fa95f0a298a3/jars/classes.jar"
+        jar="/home/vsundesh/.gradle/caches/transforms-1/files-1.1/support-media-compat-27.0.0.aar/4cf7013ae5be2a1fdbb3134134fc5b2a/jars/classes.jar"
         jumboMode="false"
         min-sdk-version="15"
         optimize="true"
         revision="26.0.2"
-        sha1="62c85d61c1ecd732dfe0c57e050d179ed85588bf">
-        <dex dex="/home/vsundesh/AndroidStudioProjects/Inventory-App-Stage-1/app/build/intermediates/transforms/preDex/release/9.jar" />
+        sha1="f73f6af8b32299bb364178188dcfe50379ed0da7">
+        <dex dex="/home/vsundesh/AndroidStudioProjects/Inventory-App-Stage-1/app/build/intermediates/transforms/preDex/release/12.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/vsundesh/.gradle/caches/transforms-1/files-1.1/support-v4-27.0.0.aar/8ef0a82912c6a14f7856b68f655d472c/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="15"
+        optimize="true"
+        revision="26.0.2"
+        sha1="e7404d217654969776b5fa566df9a7f2c1b1c337">
+        <dex dex="/home/vsundesh/AndroidStudioProjects/Inventory-App-Stage-1/app/build/intermediates/transforms/preDex/release/4.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/vsundesh/.gradle/caches/modules-2/files-2.1/com.android.support/support-annotations/27.0.0/a7782471b2a0de8fec071b8094a8aaf61c46ab70/support-annotations-27.0.0.jar"
+        jumboMode="false"
+        min-sdk-version="15"
+        optimize="true"
+        revision="26.0.2"
+        sha1="a7782471b2a0de8fec071b8094a8aaf61c46ab70">
+        <dex dex="/home/vsundesh/AndroidStudioProjects/Inventory-App-Stage-1/app/build/intermediates/transforms/preDex/release/14.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/vsundesh/.gradle/caches/transforms-1/files-1.1/support-core-utils-27.0.0.aar/a9ae817f53124c3b09ee3b8467fab9f7/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="15"
+        optimize="true"
+        revision="26.0.2"
+        sha1="cf7abe2a43ffb1d475e94d0877ef3abb95fff56e">
+        <dex dex="/home/vsundesh/AndroidStudioProjects/Inventory-App-Stage-1/app/build/intermediates/transforms/preDex/release/6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/vsundesh/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-27.0.0.aar/e590c8fe6faea3fdead8c073194be1b1/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="15"
+        optimize="true"
+        revision="26.0.2"
+        sha1="e616b95568c5f38322799069485eb73f68ffec0a">
+        <dex dex="/home/vsundesh/AndroidStudioProjects/Inventory-App-Stage-1/app/build/intermediates/transforms/preDex/release/7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/vsundesh/.gradle/caches/transforms-1/files-1.1/support-core-ui-27.0.0.aar/2e7914ff999a023ac9576c8a23b85be5/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="15"
+        optimize="true"
+        revision="26.0.2"
+        sha1="62e71cc187cfcb1ba382b05c5f39f5d903973656">
+        <dex dex="/home/vsundesh/AndroidStudioProjects/Inventory-App-Stage-1/app/build/intermediates/transforms/preDex/release/11.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/vsundesh/Android/Sdk/extras/m2repository/com/android/support/constraint/constraint-layout-solver/1.0.2/constraint-layout-solver-1.0.2.jar"
+        jumboMode="false"
+        min-sdk-version="15"
+        optimize="true"
+        revision="26.0.2"
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="/home/vsundesh/AndroidStudioProjects/Inventory-App-Stage-1/app/build/intermediates/transforms/preDex/release/15.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/vsundesh/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.0.2.aar/05b7a9e9780380ab12508b6a37929662/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="15"
+        optimize="true"
+        revision="26.0.2"
+        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
+        <dex dex="/home/vsundesh/AndroidStudioProjects/Inventory-App-Stage-1/app/build/intermediates/transforms/preDex/release/3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/vsundesh/.gradle/caches/transforms-1/files-1.1/transition-27.0.0.aar/037d8379534dc60a25ecd443bbc8b7e5/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="15"
+        optimize="true"
+        revision="26.0.2"
+        sha1="4acee87c1f3801ff4162b2f8d5b3cf999007ee6f">
+        <dex dex="/home/vsundesh/AndroidStudioProjects/Inventory-App-Stage-1/app/build/intermediates/transforms/preDex/release/10.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/vsundesh/.gradle/caches/modules-2/files-2.1/android.arch.lifecycle/common/1.0.0/e414a4cb28434e25c4f6aa71426eb20cf4874ae9/common-1.0.0.jar"
+        jumboMode="false"
+        min-sdk-version="15"
+        optimize="true"
+        revision="26.0.2"
+        sha1="e414a4cb28434e25c4f6aa71426eb20cf4874ae9">
+        <dex dex="/home/vsundesh/AndroidStudioProjects/Inventory-App-Stage-1/app/build/intermediates/transforms/preDex/release/17.jar" />
     </item>
 
 </items>

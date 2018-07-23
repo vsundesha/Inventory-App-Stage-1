@@ -1,12 +1,19 @@
 package com.example.anrdoid.inventoryappstage1.data;
 
+import android.net.Uri;
 import android.provider.BaseColumns;
 
 public class InventoryContract {
 
+    public static final String CONTENT_AUTHORITY = "com.example.anrdoid.inventoryappstage1";
+    public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
+    public static final String PATH_PRODUCT = "product";
+
     public InventoryContract() {}
 
     public final static class InventoryEntry implements BaseColumns {
+
+        public static final Uri CONTENT_URI = Uri.withAppendedPath(BASE_CONTENT_URI, PATH_PRODUCT);
 
         public final static String TABLE_NAME = "product";
 
