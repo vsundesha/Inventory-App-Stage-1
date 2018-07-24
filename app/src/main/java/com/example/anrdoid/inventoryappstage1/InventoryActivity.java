@@ -1,20 +1,31 @@
 package com.example.anrdoid.inventoryappstage1;
 
+import android.app.LoaderManager;
+import android.content.ContentUris;
+import android.content.CursorLoader;
 import android.content.Intent;
+import android.content.Loader;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
+
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.view.Menu;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.anrdoid.inventoryappstage1.data.InventoryContract.InventoryEntry;
-import com.example.anrdoid.inventoryappstage1.data.InventoryDbHelper;
 
-public class InventoryActivity extends AppCompatActivity {
 
-    private InventoryDbHelper mDbHelper;
+public class InventoryActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>{
+
+    private static final int PRODUCT_LOADER = 0;
+
+    ProductCursorAdapter cursorAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,17 +40,34 @@ public class InventoryActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        mDbHelper = new InventoryDbHelper(this);
+
+        ListView productListView = findViewById(R.id.list_view_product);
+
+        View emptyView = findViewById(R.id.empty_view);
+        productListView.setEmptyView(emptyView);
+
+        cursorAdapter = new ProductCursorAdapter(this,null,0);
+
+        productListView.setAdapter(cursorAdapter);
+
+        productListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, final long id) {
+                Intent intent = new Intent(InventoryActivity.this, MainActivity.class);
+                Uri currentProdcuttUri = ContentUris.withAppendedId(InventoryEntry.CONTENT_URI, id);
+                intent.setData(currentProdcuttUri);
+                startActivity(intent);
+            }
+        });
+
+
+
+        getLoaderManager().initLoader(PRODUCT_LOADER,null, this);
     }
+
 
     @Override
-    protected void onStart() {
-        super.onStart();
-        displayDatabaseInfo();
-    }
-
-    private void displayDatabaseInfo() {
-
+    public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
         String[] projection = {
                 InventoryEntry._ID,
                 InventoryEntry.COLUMN_PRODUCT_NAME,
@@ -48,37 +76,17 @@ public class InventoryActivity extends AppCompatActivity {
                 InventoryEntry.COLUMN_PRODUCT_SUPPLIER_NAME,
                 InventoryEntry.COLUMN_PRODUCT_SUPPLIER_PHONE_NUMBER
         };
-
-        Cursor cursor = getContentResolver().query( InventoryEntry.CONTENT_URI ,projection, null, null, null);
-
-        TextView displayView = findViewById(R.id.text_view_inventory);
-
-        try {
-            displayView.setText(
-                    InventoryEntry._ID + " " +
-                            InventoryEntry.COLUMN_PRODUCT_NAME + " " +
-                            InventoryEntry.COLUMN_PRODUCT_PRICE + " " +
-                            InventoryEntry.COLUMN_PRODUCT_QUANTITY + " " +
-                            InventoryEntry.COLUMN_PRODUCT_SUPPLIER_NAME + " " +
-                            InventoryEntry.COLUMN_PRODUCT_SUPPLIER_PHONE_NUMBER + "\n");
-
-            int idColumnIndex = cursor.getColumnIndex(InventoryEntry._ID);
-            int nameColumnIndex = cursor.getColumnIndex(InventoryEntry.COLUMN_PRODUCT_NAME);
-            int priceColumnIndex = cursor.getColumnIndex(InventoryEntry.COLUMN_PRODUCT_PRICE);
-            int quantityColumnIndex = cursor.getColumnIndex(InventoryEntry.COLUMN_PRODUCT_QUANTITY);
-            int supplierNameColumnIndex = cursor.getColumnIndex(InventoryEntry.COLUMN_PRODUCT_SUPPLIER_NAME);
-            int supplierPhoneColumnIndex = cursor.getColumnIndex(InventoryEntry.COLUMN_PRODUCT_SUPPLIER_PHONE_NUMBER);
-            while (cursor.moveToNext()) {
-                displayView.append(("\n" + cursor.getInt(idColumnIndex) + " " +
-                        cursor.getString(nameColumnIndex) + " " +
-                        cursor.getInt(priceColumnIndex) + " " +
-                        cursor.getInt(quantityColumnIndex) + " " +
-                        cursor.getInt(supplierNameColumnIndex) + " " +
-                        cursor.getInt(supplierPhoneColumnIndex) ));
-            }
-
-        } finally {
-            cursor.close();
-        }
+        return new CursorLoader(this,InventoryEntry.CONTENT_URI,projection,null,null,null);
     }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
+        cursorAdapter.swapCursor(cursor);
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+        cursorAdapter.swapCursor(null);
+    }
+
 }

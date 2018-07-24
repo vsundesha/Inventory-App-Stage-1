@@ -18,7 +18,6 @@
 
         <activity
             android:name=".MainActivity"
-            android:label="@string/add_product"
             android:parentActivityName=".InventoryActivity"
             android:theme="@style/AppTheme">
             <meta-data

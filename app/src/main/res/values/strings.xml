@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">Inventory_App_Stage_1</string>
 
-    <string name="add_product">New product</string>
+    <string name="add_product">Add product</string>
+    <string name="edit_product">Edit product</string>
 
     <string name="product_name">Product name</string>
     <string name="product_price">Price</string>
@@ -14,4 +15,14 @@
     <string name="supplier_three">Fbay</string>
 
     <string name="action_save">Save</string>
+    <string name="editor_insert_product_failed">Insert Failed</string>
+    <string name="editor_insert_product_successful">Insert Success</string>
+    <string name="empty_view_title_text">No products in list</string>
+    <string name="empty_view_subtitle_text">Get started by adding one</string>
+    <string name="product_name_required">Product name required</string>
+    <string name="price_required">Product price required</string>
+    <string name="quantity_required">Product qty required</string>
+    <string name="supplier_phone_required">Supplier phone required</string>
+    <string name="update_failed">Product update failed</string>
+    <string name="update_successful">Product update successful</string>
 </resources>

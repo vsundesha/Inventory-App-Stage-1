@@ -1,5 +1,6 @@
 package com.example.anrdoid.inventoryappstage1.data;
 
+import android.content.ContentResolver;
 import android.net.Uri;
 import android.provider.BaseColumns;
 
@@ -15,6 +16,12 @@ public class InventoryContract {
 
         public static final Uri CONTENT_URI = Uri.withAppendedPath(BASE_CONTENT_URI, PATH_PRODUCT);
 
+        public static final String CONTENT_LIST_TYPE =
+                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" +  PATH_PRODUCT;
+
+        public static final String CONTENT_ITEM_TYPE =
+                ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_PRODUCT;
+
         public final static String TABLE_NAME = "product";
 
         public final static String _ID = BaseColumns._ID;
@@ -27,5 +34,12 @@ public class InventoryContract {
         public final static int SUPPLIER_ONE = 0;
         public final static int SUPPLIER_TWO = 1;
         public final static int SUPPLIER_THREE = 2;
+
+        public static boolean isValidSupplier(int supplier) {
+            if (supplier == SUPPLIER_ONE || supplier == SUPPLIER_TWO || supplier == SUPPLIER_THREE) {
+                return true;
+            }
+            return false;
+        }
     }
 }
