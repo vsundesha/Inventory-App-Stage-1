@@ -1,9 +1,11 @@
 package com.example.anrdoid.inventoryappstage1;
 
+import android.app.AlertDialog;
 import android.app.LoaderManager;
 import android.content.ContentValues;
 
 import android.content.CursorLoader;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
@@ -11,6 +13,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
@@ -19,6 +22,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -241,6 +245,8 @@ public class MainActivity extends AppCompatActivity implements
             return;
         }
         if (cursor.moveToFirst()) {
+
+            final int idColumnIndex = cursor.getColumnIndex(InventoryEntry._ID);
             int nameColumnIndex = cursor.getColumnIndex(InventoryEntry.COLUMN_PRODUCT_NAME);
             int priceColumnIndex = cursor.getColumnIndex(InventoryEntry.COLUMN_PRODUCT_PRICE);
             int quantityColumnIndex = cursor.getColumnIndex(InventoryEntry.COLUMN_PRODUCT_QUANTITY);
@@ -249,7 +255,7 @@ public class MainActivity extends AppCompatActivity implements
 
             String currentName = cursor.getString(nameColumnIndex);
             int currentPrice = cursor.getInt(priceColumnIndex);
-            int currentQuantity = cursor.getInt(quantityColumnIndex);
+            final int currentQuantity = cursor.getInt(quantityColumnIndex);
             int currentSupplierName = cursor.getInt(supplierNameColumnIndex);
             int currentSupplierPhone = cursor.getInt(supplierPhoneColumnIndex);
 
@@ -272,6 +278,81 @@ public class MainActivity extends AppCompatActivity implements
                     mProductSupplieName.setSelection(0);
                     break;
             }
+
+            Button dbtn = findViewById(R.id.decrement);
+            dbtn.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    System.out.println("d");
+
+                    if (currentQuantity > 0) {
+                        int mCurrentQuantity = currentQuantity - 1;
+                        updateProductQty(mCurrentQuantity);
+                    } else {
+
+                    }
+                }
+            });
+
+            Button productIncreaseButton = findViewById(R.id.increment);
+            productIncreaseButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    System.out.println("i");
+                    int mCurrentQuantity = currentQuantity + 1;
+                        updateProductQty(mCurrentQuantity);
+                }
+
+                
+            });
+
+            Button productDeleteButton = findViewById(R.id.delete);
+            productDeleteButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    delete();
+                }
+            });
+
+
+        }
+    }
+    private void delete() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(R.string.delete_msg);
+        builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                getContentResolver().delete(mCurrentProductUri, null, null);
+                finish();
+            }
+        });
+        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                if (dialog != null) {
+                    dialog.dismiss();
+                }
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
+    private void updateProductQty(int mCurrentQuantity) {
+
+        if (mCurrentProductUri == null) {
+            return;
+        }
+        ContentValues values = new ContentValues();
+        values.put(InventoryEntry.COLUMN_PRODUCT_QUANTITY, mCurrentQuantity);
+
+        if (mCurrentProductUri == null) {
+            getContentResolver().insert(InventoryEntry.CONTENT_URI, values);
+
+
+        } else {
+            getContentResolver().update(mCurrentProductUri, values, null, null);
+
         }
     }
 
@@ -283,4 +364,6 @@ public class MainActivity extends AppCompatActivity implements
         mProductSupplierPhoneNumber.setText("");
         mProductSupplieName.setSelection(0);
     }
+
+
 }

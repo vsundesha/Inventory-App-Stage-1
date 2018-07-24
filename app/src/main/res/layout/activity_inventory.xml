@@ -10,6 +10,8 @@
         android:id="@+id/list_view_product"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
+
     <!-- Empty view for the list -->
     <RelativeLayout
         android:id="@+id/empty_view"

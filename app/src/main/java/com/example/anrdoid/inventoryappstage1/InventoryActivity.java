@@ -14,8 +14,10 @@ import android.support.design.widget.FloatingActionButton;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.anrdoid.inventoryappstage1.data.InventoryContract.InventoryEntry;
 
@@ -80,7 +82,7 @@ public class InventoryActivity extends AppCompatActivity implements LoaderManage
     }
 
     @Override
-    public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
+    public void onLoadFinished(Loader<Cursor> loader, final Cursor cursor) {
         cursorAdapter.swapCursor(cursor);
     }
 
@@ -88,5 +90,7 @@ public class InventoryActivity extends AppCompatActivity implements LoaderManage
     public void onLoaderReset(Loader<Cursor> loader) {
         cursorAdapter.swapCursor(null);
     }
+
+
 
 }

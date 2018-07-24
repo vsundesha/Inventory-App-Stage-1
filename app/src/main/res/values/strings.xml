@@ -25,4 +25,14 @@
     <string name="supplier_phone_required">Supplier phone required</string>
     <string name="update_failed">Product update failed</string>
     <string name="update_successful">Product update successful</string>
+    <string name="minimum_qty">Minimum qty is 0</string>
+    <string name="price_label">Price: </string>
+    <string name="price_name">Name: </string>
+    <string name="price_qty">Qty: </string>
+    <string name="sale">SALE</string>
+    <string name="decrement">-</string>
+    <string name="increment">+</string>
+    <string name="delete_msg">Delete this product ?</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
 </resources>
