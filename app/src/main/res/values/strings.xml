@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Inventory_App_Stage_1</string>
+    <string name="app_name">Inventory App 2</string>
 
     <string name="add_product">Add product</string>
     <string name="edit_product">Edit product</string>
@@ -15,24 +15,38 @@
     <string name="supplier_three">Fbay</string>
 
     <string name="action_save">Save</string>
+
     <string name="editor_insert_product_failed">Insert Failed</string>
     <string name="editor_insert_product_successful">Insert Success</string>
+
     <string name="empty_view_title_text">No products in list</string>
     <string name="empty_view_subtitle_text">Get started by adding one</string>
+
     <string name="product_name_required">Product name required</string>
     <string name="price_required">Product price required</string>
     <string name="quantity_required">Product qty required</string>
     <string name="supplier_phone_required">Supplier phone required</string>
+
     <string name="update_failed">Product update failed</string>
     <string name="update_successful">Product update successful</string>
+
     <string name="minimum_qty">Minimum qty is 0</string>
     <string name="price_label">Price: </string>
     <string name="price_name">Name: </string>
     <string name="price_qty">Qty: </string>
+
     <string name="sale">SALE</string>
+
     <string name="decrement">-</string>
     <string name="increment">+</string>
-    <string name="delete_msg">Delete this product ?</string>
-    <string name="delete">Delete</string>
+
+
     <string name="cancel">Cancel</string>
+
+    <string name="call">Call</string>
+
+    <string name="delete">Delete</string>
+    <string name="delete_msg">Delete this product ?</string>
+    <string name="delete_msg_pass">Product Deleted</string>
+    <string name="delete_msg_err">Delete Product failed</string>
 </resources>

@@ -22,6 +22,7 @@ public class InventoryProvider extends ContentProvider {
     private static final UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 
     private static final int PRODUCTS = 100;
+
     private static final int PRODUCT_ID = 101;
 
     static {

@@ -13,9 +13,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Editable;
+
 import android.text.TextUtils;
-import android.util.Log;
+
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -41,8 +41,10 @@ public class MainActivity extends AppCompatActivity implements
     private EditText mProductQuantity;
     private Spinner mProductSupplieName;
     private EditText mProductSupplierPhoneNumber;
-
-    private int mSupplieName = InventoryEntry.SUPPLIER_THREE;
+    private int currentSupplierPhone;
+    private Button mIncrementButton;
+    private Button mDecrementButton;
+    private int mSupplieName = InventoryEntry.SUPPLIER_ONE;
 
     private boolean productHasChanged = false;
 
@@ -50,8 +52,6 @@ public class MainActivity extends AppCompatActivity implements
         @Override
         public boolean onTouch(View view, MotionEvent motionEvent) {
             productHasChanged = true;
-            Log.d("message", "onTouch");
-
             return false;
         }
     };
@@ -61,13 +61,12 @@ public class MainActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Log.d("message", "onCreate");
-
         Intent intent = getIntent();
         mCurrentProductUri = intent.getData();
 
         if (mCurrentProductUri == null){
             setTitle(getString(R.string.add_product));
+            invalidateOptionsMenu();
         } else {
             setTitle(getString(R.string.edit_product));
             getLoaderManager().initLoader(EXISTING_PRODUCT_LOADER, null, this);
@@ -78,14 +77,50 @@ public class MainActivity extends AppCompatActivity implements
         mProductQuantity = findViewById(R.id.product_quantity);
         mProductSupplieName = findViewById(R.id.product_supplier_name);
         mProductSupplierPhoneNumber = findViewById(R.id.product_supplier_phone_number);
+        mIncrementButton = findViewById(R.id.increment);
+        mDecrementButton = findViewById(R.id.decrement);
+        mDecrementButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String currentQuantity = mProductQuantity.getText().toString();
+                int qty;
+                if (currentQuantity.length() == 0) {
+                    mProductQuantity.setText(String.valueOf(0));
+                } else {
+                    qty = Integer.parseInt(currentQuantity) - 1;
+                    if(qty >=0) {
+                        mProductQuantity.setText(String.valueOf(qty));
+                    }
+                }
+            }
+        });
+        mIncrementButton .setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String currentQuantity = mProductQuantity.getText().toString();
+                int qty;
+                if(currentQuantity.length() == 0){
+                    qty = 1;
+                    mProductQuantity.setText(String.valueOf(qty));
+                }else{
+                    qty = Integer.parseInt(currentQuantity) + 1;
+                    mProductQuantity.setText(String.valueOf(qty));
+                }
+            }
+        });
 
         mProductName.setOnTouchListener(mTouchListener);
         mProductPrice.setOnTouchListener(mTouchListener);
         mProductQuantity.setOnTouchListener(mTouchListener);
-        mProductSupplieName.setOnTouchListener(mTouchListener);
         mProductSupplierPhoneNumber.setOnTouchListener(mTouchListener);
+        mProductSupplieName.setOnTouchListener(mTouchListener);
+        mIncrementButton.setOnTouchListener(mTouchListener);
+        mDecrementButton.setOnTouchListener(mTouchListener);
+
         setupSpinner();
+
     }
+
 
     private void setupSpinner() {
 
@@ -123,6 +158,7 @@ public class MainActivity extends AppCompatActivity implements
         String productPrice = mProductPrice.getText().toString().trim();
         String productQuantity = mProductQuantity.getText().toString().trim();
         String productSupplierPhoneNumber = mProductSupplierPhoneNumber.getText().toString().trim();
+
         if (mCurrentProductUri == null) {
             if (TextUtils.isEmpty(productName)) {
                 Toast.makeText(this, getString(R.string.product_name_required), Toast.LENGTH_SHORT).show();
@@ -158,6 +194,7 @@ public class MainActivity extends AppCompatActivity implements
                 Toast.makeText(this, getString(R.string.editor_insert_product_successful),
                         Toast.LENGTH_SHORT).show();
             }
+            finish();
         } else {
             if (TextUtils.isEmpty(productName)) {
                 Toast.makeText(this, getString(R.string.product_name_required), Toast.LENGTH_SHORT).show();
@@ -193,16 +230,30 @@ public class MainActivity extends AppCompatActivity implements
             } else {
                 Toast.makeText(this, getString(R.string.update_successful),
                         Toast.LENGTH_SHORT).show();
-                finish();
+
             }
+            finish();
         }
 
+
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+        if (mCurrentProductUri == null) {
+            MenuItem menuItem;
+            menuItem = menu.findItem(R.id.delete_product);
+            menuItem.setVisible(false);
+            menuItem = menu.findItem(R.id.call);
+            menuItem.setVisible(false);
+        }
+        return true;
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_add, menu);
-        Log.d("message", "main activity");
         return true;
     }
 
@@ -211,7 +262,13 @@ public class MainActivity extends AppCompatActivity implements
         switch (item.getItemId()) {
             case R.id.action_save:
                 insertProduct();
-                finish();
+                return true;
+            case R.id.delete_product:
+                deleteDialog();
+                break;
+            case R.id.call:
+                call();
+                break;
             case android.R.id.home:
                 if (!productHasChanged) {
                     NavUtils.navigateUpFromSameTask(MainActivity.this);
@@ -246,7 +303,7 @@ public class MainActivity extends AppCompatActivity implements
         }
         if (cursor.moveToFirst()) {
 
-            final int idColumnIndex = cursor.getColumnIndex(InventoryEntry._ID);
+
             int nameColumnIndex = cursor.getColumnIndex(InventoryEntry.COLUMN_PRODUCT_NAME);
             int priceColumnIndex = cursor.getColumnIndex(InventoryEntry.COLUMN_PRODUCT_PRICE);
             int quantityColumnIndex = cursor.getColumnIndex(InventoryEntry.COLUMN_PRODUCT_QUANTITY);
@@ -257,7 +314,7 @@ public class MainActivity extends AppCompatActivity implements
             int currentPrice = cursor.getInt(priceColumnIndex);
             final int currentQuantity = cursor.getInt(quantityColumnIndex);
             int currentSupplierName = cursor.getInt(supplierNameColumnIndex);
-            int currentSupplierPhone = cursor.getInt(supplierPhoneColumnIndex);
+            currentSupplierPhone = cursor.getInt(supplierPhoneColumnIndex);
 
             mProductName.setText(currentName);
             mProductPrice.setText(Integer.toString(currentPrice));
@@ -269,62 +326,25 @@ public class MainActivity extends AppCompatActivity implements
                     mProductSupplieName.setSelection(0);
                     break;
                 case InventoryEntry.SUPPLIER_TWO:
-                    mProductSupplieName.setSelection(2);
+                    mProductSupplieName.setSelection(1);
                     break;
                 case InventoryEntry.SUPPLIER_THREE:
-                    mProductSupplieName.setSelection(3);
+                    mProductSupplieName.setSelection(2);
                     break;
                 default:
                     mProductSupplieName.setSelection(0);
                     break;
             }
 
-            Button dbtn = findViewById(R.id.decrement);
-            dbtn.setOnClickListener(new View.OnClickListener() {
-
-                @Override
-                public void onClick(View v) {
-                    System.out.println("d");
-
-                    if (currentQuantity > 0) {
-                        int mCurrentQuantity = currentQuantity - 1;
-                        updateProductQty(mCurrentQuantity);
-                    } else {
-
-                    }
-                }
-            });
-
-            Button productIncreaseButton = findViewById(R.id.increment);
-            productIncreaseButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    System.out.println("i");
-                    int mCurrentQuantity = currentQuantity + 1;
-                        updateProductQty(mCurrentQuantity);
-                }
-
-                
-            });
-
-            Button productDeleteButton = findViewById(R.id.delete);
-            productDeleteButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    delete();
-                }
-            });
-
-
         }
     }
-    private void delete() {
+    private void deleteDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(R.string.delete_msg);
         builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                getContentResolver().delete(mCurrentProductUri, null, null);
-                finish();
+              deleteProduct();
+
             }
         });
         builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
@@ -338,22 +358,29 @@ public class MainActivity extends AppCompatActivity implements
         alertDialog.show();
     }
 
-    private void updateProductQty(int mCurrentQuantity) {
-
-        if (mCurrentProductUri == null) {
-            return;
+    private void deleteProduct() {
+        if (mCurrentProductUri != null) {
+            int rowsDeleted = 0;
+            rowsDeleted = getContentResolver().delete(
+                    mCurrentProductUri,
+                    null,
+                    null
+            );
+            if (rowsDeleted == 0) {
+                Toast.makeText(this, getString(R.string.delete_msg_err),
+                        Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, getString(R.string.delete_msg_pass),
+                        Toast.LENGTH_SHORT).show();
+            }
+            finish();
         }
-        ContentValues values = new ContentValues();
-        values.put(InventoryEntry.COLUMN_PRODUCT_QUANTITY, mCurrentQuantity);
+    }
 
-        if (mCurrentProductUri == null) {
-            getContentResolver().insert(InventoryEntry.CONTENT_URI, values);
-
-
-        } else {
-            getContentResolver().update(mCurrentProductUri, values, null, null);
-
-        }
+    private void call(){
+        Intent supplierNumberIntent = new Intent(Intent.ACTION_DIAL);
+        supplierNumberIntent.setData(Uri.parse("tel:" + currentSupplierPhone));
+        startActivity(supplierNumberIntent);
     }
 
     @Override

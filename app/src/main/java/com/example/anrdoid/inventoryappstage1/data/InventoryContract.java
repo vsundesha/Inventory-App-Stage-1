@@ -35,6 +35,7 @@ public class InventoryContract {
         public final static int SUPPLIER_TWO = 1;
         public final static int SUPPLIER_THREE = 2;
 
+
         public static boolean isValidSupplier(int supplier) {
             if (supplier == SUPPLIER_ONE || supplier == SUPPLIER_TWO || supplier == SUPPLIER_THREE) {
                 return true;

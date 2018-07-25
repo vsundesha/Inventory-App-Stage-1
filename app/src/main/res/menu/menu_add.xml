@@ -9,5 +9,13 @@
         android:title="@string/action_save"
         android:icon="@drawable/ic_done_white_24dp"
         app:showAsAction="always" />
+    <item
+        android:id="@+id/call"
+        android:title="@string/call"
+        app:showAsAction="never" />
 
+    <item
+        android:id="@+id/delete_product"
+        android:title="@string/delete"
+        app:showAsAction="never" />
 </menu>
